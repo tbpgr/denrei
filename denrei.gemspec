@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["tbpgr@tbpgr.jp"]
   spec.description   = %q{Denrei shows Ruby/Tk-Dialog with your favorite titile & message.}
   spec.summary       = %q{Denrei shows Ruby/Tk-Dialog with your favorite titile & message.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/tbpgr/denrei"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
