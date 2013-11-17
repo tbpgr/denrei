@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'denrei'
+Denrei::Core.new.do_denrei
