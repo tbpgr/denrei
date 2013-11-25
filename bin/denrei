@@ -1,4 +1,35 @@
 #!/usr/bin/env ruby
 
-require 'denrei'
-Denrei::Core.new.do_denrei
+require "denrei/version"
+require "denrei"
+require "thor"
+
+module Denrei
+  #= Denrei CLI
+  class CLI < Thor
+    class_option :help, :type => :boolean, :aliases => '-h', :desc => 'help message.'
+    class_option :version, :type => :boolean, :desc => 'version'
+    default_task :execute
+
+    desc "execute", "show dialog with title, message"
+    def execute
+      denrei = Denrei::Core.new
+
+      denrei.read_denreifile
+      denrei.open
+      denrei.keep_tk
+    end
+
+    desc "init", "generate Denreifile"
+    def init
+      Denrei::Core.new.init
+    end
+
+    desc "version", "version"
+    def version
+      p Denrei::VERSION
+    end
+  end
+end
+
+Denrei::CLI.start(ARGV)
