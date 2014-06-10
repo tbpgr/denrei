@@ -45,6 +45,7 @@ module Denrei
     end
 
     private
+
     def set_title_label
       title = @title
       TkLabel.new do
