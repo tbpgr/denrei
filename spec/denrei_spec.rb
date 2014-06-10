@@ -1,12 +1,12 @@
 # encoding: utf-8
-require_relative "../lib/denrei"
-require "spec_helper"
+require_relative '../lib/denrei'
+require 'spec_helper'
 
 describe Denrei::Core do
   cases_init = [
     {
-    case_no: 1,
-    expected: Denrei::Core::DENREI_TEMPLATE
+      case_no: 1,
+      expected: Denrei::Core::DENREI_TEMPLATE
     },
   ]
 
@@ -19,15 +19,15 @@ describe Denrei::Core do
       denrei.init
 
       # then
-      actual = File.open("Denreifile") {|f|f.read}
+      actual = File.open('Denreifile') { |f|f.read }
       expect(actual).to eq(c[:expected])
     end
   end
 
   cases_set_default = [
     {
-    case_no: 1,
-    expected: {title: "Denrei", message: "Finish!!"}
+      case_no: 1,
+      expected: { title: 'Denrei', message: 'Finish!!' }
     },
   ]
 
@@ -47,37 +47,37 @@ describe Denrei::Core do
     end
   end
 
-  EXECUTE_DENREI_DSL_VALID_INPUT =<<-EOS
+  EXECUTE_DENREI_DSL_VALID_INPUT = <<-EOS
 title_text "title text"
 message_text "message text"
   EOS
 
-  EXECUTE_DENREI_DSL_ALL_COMMENT_INPUT =<<-EOS
+  EXECUTE_DENREI_DSL_ALL_COMMENT_INPUT = <<-EOS
 # title_text "title text"
 # message_text "message text"
   EOS
 
-  EXECUTE_DENREI_DSL_INVALID_INPUT =<<-EOS
+  EXECUTE_DENREI_DSL_INVALID_INPUT = <<-EOS
 title_text_invalid "title text"
 message_text "message text"
   EOS
 
   cases_execute_denrei_dsl = [
     {
-    case_no: 1,
-    input: EXECUTE_DENREI_DSL_VALID_INPUT,
-    expected: {title: "title text", message: "message text"}
+      case_no: 1,
+      input: EXECUTE_DENREI_DSL_VALID_INPUT,
+      expected: { title: 'title text', message: 'message text' }
     },
     {
-    case_no: 2,
-    input: EXECUTE_DENREI_DSL_ALL_COMMENT_INPUT,
-    expected: {title: nil, message: nil}
+      case_no: 2,
+      input: EXECUTE_DENREI_DSL_ALL_COMMENT_INPUT,
+      expected: { title: nil, message: nil }
     },
     {
-    case_no: 3,
-    input: EXECUTE_DENREI_DSL_INVALID_INPUT,
-    expected: {title: nil, message: nil},
-    have_error: true
+      case_no: 3,
+      input: EXECUTE_DENREI_DSL_INVALID_INPUT,
+      expected: { title: nil, message: nil },
+      have_error: true
     },
   ]
 
@@ -88,7 +88,7 @@ message_text "message text"
 
       # when
       if c[:have_error]
-        lambda{denrei.method(:execute_denrei_dsl).call(c[:input])}.should raise_error(Denrei::DenreiDslError)
+        lambda { denrei.method(:execute_denrei_dsl).call(c[:input]) }.should raise_error(Denrei::DenreiDslError)
       else
         denrei.method(:execute_denrei_dsl).call(c[:input])
         # then
@@ -102,6 +102,6 @@ message_text "message text"
   end
 
   after(:each) do
-    File.delete("Denreifile") if File.exists?("Denreifile")
+    File.delete('Denreifile') if File.exist?('Denreifile')
   end
 end

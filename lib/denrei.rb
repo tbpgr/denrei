@@ -1,12 +1,12 @@
 # encoding: utf-8
-require "denrei/version"
+require 'denrei/version'
 require 'tk'
 
 module Denrei
-  #= Denrei Core
+  # = Denrei Core
   class Core
     attr_accessor :title, :message
-    DENREI_TEMPLATE =<<-EOS
+    DENREI_TEMPLATE = <<-EOS
 # encoding: utf-8
 # ***title-settings***
 # if you want to change defalt title "Denrei", comment out title_text and set your text
@@ -20,7 +20,7 @@ module Denrei
     def do_denrei
       denrei = Denrei::Core.new
 
-      if $*[0] == "init"
+      if $ARGV[0] == 'init'
         denrei.init
       else
         denrei.read_denreifile
@@ -29,29 +29,29 @@ module Denrei
       end
     end
 
-    #== generate denreifile template
+    # == generate denreifile template
     def init
-      File.open("./Denreifile", "w") {|f|f.puts DENREI_TEMPLATE}
+      File.open('./Denreifile', 'w') { |f|f.puts DENREI_TEMPLATE }
     end
 
-    #== read Denreifile
+    # == read Denreifile
     # read current directory's Denreifile file.
     # if Denreifile is not exists, do nothing.
     # if Denreifile is exists, set gui parameters by DenreiDSL.
     def read_denreifile
       set_default
-      return unless File.exists? "./Denreifile"
+      return unless File.exist? './Denreifile'
       execute_denrei_dsl read_denreifile_source
     end
 
-    #== OpenMessageDialog
+    # == OpenMessageDialog
     def open
       set_title_label
       set_message_label
       set_close_button get_tk_root
     end
 
-    #== keep display GUI
+    # == keep display GUI
     def keep_tk
       Tk.mainloop
     end
@@ -61,16 +61,16 @@ module Denrei
       title = @title
       TkLabel.new do
         text title
-        font TkFont.new({
-                    'family' => 'times',
-                    'weight' => 'bold',
-                    'size' => 20,
-                    'slant' => 'italic'
-                    })
+        font TkFont.new(
+                          'family' => 'times',
+                          'weight' => 'bold',
+                          'size' => 20,
+                          'slant' => 'italic'
+                    )
         width 20
         height 2
         bd 5
-        relief "groove"
+        relief 'groove'
         pack
       end
     end
@@ -79,15 +79,15 @@ module Denrei
       message = @message
       TkLabel.new do
         text message
-        font TkFont.new({
-                    'family' => 'times',
-                    'weight' => 'bold',
-                    'size' => 20,
-                    })
+        font TkFont.new(
+                          'family' => 'times',
+                          'weight' => 'bold',
+                          'size' => 20
+                    )
         width 20
         height 4
         bd 5
-        relief "groove"
+        relief 'groove'
         pack
       end
     end
@@ -98,24 +98,24 @@ module Denrei
 
     def set_close_button(tk_root)
       btn_OK = TkButton.new(tk_root) do
-        text "close"
+        text 'close'
         width 10
         focus
         borderwidth 5
         underline 0
-        state "normal"
-        cursor "hand2"
+        state 'normal'
+        cursor 'hand2'
         font TkFont.new('times 20 bold')
-        foreground  "red"
-        activebackground "blue"
-        relief      "raised"
-        command {exit}
-        pack("side" => "right",  "padx"=> "50", "pady"=> "10")
+        foreground 'red'
+        activebackground 'blue'
+        relief 'raised'
+        command { exit }
+        pack('side' => 'right',  'padx' => '50', 'pady' => '10')
       end
     end
 
     def read_denreifile_source
-      File.open("./Denreifile") {|f|f.read}
+      File.open('./Denreifile') { |f|f.read }
     end
 
     def execute_denrei_dsl(source)
@@ -139,8 +139,8 @@ module Denrei
     end
 
     def set_default
-      @title = "Denrei"
-      @message = "Finish!!"
+      @title = 'Denrei'
+      @message = 'Finish!!'
     end
 
     def title_text(title)
@@ -152,5 +152,5 @@ module Denrei
     end
   end
 
-  class DenreiDslError < StandardError;end
+  class DenreiDslError < StandardError; end
 end
