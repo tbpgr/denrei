@@ -106,7 +106,7 @@ module Denrei
     def execute_denrei_dsl(source)
       source.each_line do |line|
         begin
-          eval line, binding
+          instance_eval(line)
         rescue => e
           puts "invalid dsl = #{line}"
           puts <<-EOS
@@ -118,7 +118,7 @@ module Denrei
   message_text "value"
           EOS
           raise Denrei::DenreiDslError.new
-          exit
+          exit(false)
         end
       end
     end
