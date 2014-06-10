@@ -17,18 +17,6 @@ module Denrei
 # message_text "message text"
     EOS
 
-    def do_denrei
-      denrei = Denrei::Core.new
-
-      if $ARGV[0] == 'init'
-        denrei.init
-      else
-        denrei.read_denreifile
-        denrei.open
-        denrei.keep_tk
-      end
-    end
-
     # == generate denreifile template
     def init
       File.open('./Denreifile', 'w') { |f|f.puts DENREI_TEMPLATE }

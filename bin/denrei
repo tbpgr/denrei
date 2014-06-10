@@ -14,7 +14,6 @@ module Denrei
     desc 'execute', 'show dialog with title, message'
     def execute
       denrei = Denrei::Core.new
-
       denrei.read_denreifile
       denrei.open
       denrei.keep_tk
