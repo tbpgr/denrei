@@ -88,7 +88,7 @@ message_text "message text"
 
       # when
       if c[:have_error]
-        lambda { denrei.method(:execute_denrei_dsl).call(c[:input]) }.should raise_error(Denrei::DenreiDslError)
+        -> { denrei.method(:execute_denrei_dsl).call(c[:input]) }.should raise_error(Denrei::DenreiDslError)
       else
         denrei.method(:execute_denrei_dsl).call(c[:input])
         # then
