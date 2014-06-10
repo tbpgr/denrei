@@ -48,7 +48,7 @@ module Denrei
     def open
       set_title_label
       set_message_label
-      set_close_button get_tk_root
+      add_close_button
     end
 
     # == keep display GUI
@@ -92,12 +92,8 @@ module Denrei
       end
     end
 
-    def get_tk_root
-      TkRoot.new
-    end
-
-    def set_close_button(tk_root)
-      btn_OK = TkButton.new(tk_root) do
+    def add_close_button
+      btn_OK = TkButton.new(TkRoot.new) do
         text 'close'
         width 10
         focus
