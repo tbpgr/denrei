@@ -5,6 +5,7 @@ module Denrei
   # = Denrei MessageLabel
   class MessageLabel
     class << self
+      # rubocop:disable MethodLength
       def setting_message_label(message)
         TkLabel.new do
           text message
@@ -20,6 +21,7 @@ module Denrei
           pack
         end
       end
+      # rubocop:enable MethodLength
     end
   end
 end

@@ -69,9 +69,8 @@ message_text "value"
         begin
           instance_eval(line)
         rescue => e
-          puts "invalid dsl = #{line}"
-          puts INVALID_DSL_MESSAGE
-          raise Denrei::DenreiDslError.new
+          warn("invalid dsl = #{line}\n#{INVALID_DSL_MESSAGE}")
+          raise Denrei::DenreiDslError
           exit(false)
         end
       end

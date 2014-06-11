@@ -17,6 +17,9 @@ module Denrei
       denrei.read_denreifile
       denrei.open
       denrei.keep_tk
+    rescue => e
+      warn(e.message)
+      exit(false)
     end
 
     desc 'init', 'generate Denreifile'
