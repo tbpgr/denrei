@@ -71,7 +71,6 @@ message_text "value"
         rescue => e
           warn("invalid dsl = #{line}\n#{INVALID_DSL_MESSAGE}")
           raise Denrei::DenreiDslError
-          exit(false)
         end
       end
     end
