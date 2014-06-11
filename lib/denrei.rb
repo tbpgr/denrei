@@ -6,6 +6,7 @@ module Denrei
   # = Denrei Core
   class Core
     attr_accessor :title, :message
+# rubocop:disable all
     DENREI_TEMPLATE = <<-EOS
 # encoding: utf-8
 # ***title-settings***
@@ -16,6 +17,7 @@ module Denrei
 # if you want to change defalt message "Finish!!", comment out message_text and set your text
 # message_text "message text"
     EOS
+# rubocop:enable all
 
     # == generate denreifile template
     def init

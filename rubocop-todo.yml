@@ -6,8 +6,8 @@
 # versions of RuboCop, may require this file to be generated again.
 
 # Offense count: 5
-LineLength:
-  Max: 112
+# LineLength:
+#   Max: 112
 
 # Offense count: 4
 # Configuration parameters: CountComments.

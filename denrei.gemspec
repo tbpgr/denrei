@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Denrei::VERSION
   spec.authors       = ['tbpgr']
   spec.email         = ['tbpgr@tbpgr.jp']
-  spec.description   = %q(Denrei shows Ruby/Tk-Dialog with your favorite titile & message.)
-  spec.summary       = %q(Denrei shows Ruby/Tk-Dialog with your favorite titile & message.)
+  spec.description   = %q(Ruby/Tk-Dialog with your favorite titile & message.)
+  spec.summary       = %q(Ruby/Tk-Dialog with your favorite titile & message.)
   spec.homepage      = 'https://github.com/tbpgr/denrei'
   spec.license       = 'MIT'
 
