@@ -5,14 +5,9 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 1
-# Configuration parameters: SupportedStyles.
-# RaiseArgs:
-#   EnforcedStyle: compact
-
 # Offense count: 2
-RegexpLiteral:
-  MaxSlashes: 0
+# RegexpLiteral:
+#   MaxSlashes: 0
 
 # Offense count: 3
 # Configuration parameters: EnforcedStyleForMultiline, SupportedStyles.
