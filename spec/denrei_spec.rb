@@ -1,6 +1,6 @@
 # encoding: utf-8
-require_relative '../lib/denrei'
 require 'spec_helper'
+require 'denrei'
 
 describe Denrei::Core do
   cases_init = [

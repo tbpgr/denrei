@@ -1,6 +1,9 @@
 # encoding: utf-8
 require 'denrei/version'
 require 'tk'
+require 'close_button'
+require 'message_label'
+require 'title_label'
 
 module Denrei
   # = Denrei Core
@@ -19,6 +22,15 @@ module Denrei
     EOS
 # rubocop:enable all
 
+    INVALID_DSL_MESSAGE = <<-EOS
+you can use only these dsl
+
+# this set dialog title
+title_text "value"
+# this set dialog message
+message_text "value"
+    EOS
+
     # == generate denreifile template
     def init
       File.open('./Denreifile', 'w') { |f|f.puts DENREI_TEMPLATE }
@@ -36,9 +48,9 @@ module Denrei
 
     # == OpenMessageDialog
     def open
-      set_title_label
-      set_message_label
-      add_close_button
+      TitleLabel.setting_title_label(@title)
+      MessageLabel.setting_message_label(@message)
+      CloseButton.add_close_button
     end
 
     # == keep display GUI
@@ -47,59 +59,6 @@ module Denrei
     end
 
     private
-
-    def set_title_label
-      title = @title
-      TkLabel.new do
-        text title
-        font TkFont.new(
-                          'family' => 'times',
-                          'weight' => 'bold',
-                          'size' => 20,
-                          'slant' => 'italic'
-                    )
-        width 20
-        height 2
-        bd 5
-        relief 'groove'
-        pack
-      end
-    end
-
-    def set_message_label
-      message = @message
-      TkLabel.new do
-        text message
-        font TkFont.new(
-                          'family' => 'times',
-                          'weight' => 'bold',
-                          'size' => 20
-                    )
-        width 20
-        height 4
-        bd 5
-        relief 'groove'
-        pack
-      end
-    end
-
-    def add_close_button
-      btn_OK = TkButton.new(TkRoot.new) do
-        text 'close'
-        width 10
-        focus
-        borderwidth 5
-        underline 0
-        state 'normal'
-        cursor 'hand2'
-        font TkFont.new('times 20 bold')
-        foreground 'red'
-        activebackground 'blue'
-        relief 'raised'
-        command { exit }
-        pack('side' => 'right',  'padx' => '50', 'pady' => '10')
-      end
-    end
 
     def read_denreifile_source
       File.open('./Denreifile') { |f|f.read }
@@ -111,14 +70,7 @@ module Denrei
           instance_eval(line)
         rescue => e
           puts "invalid dsl = #{line}"
-          puts <<-EOS
-  you can use only these dsl
-
-  # this set dialog title
-  title_text "value"
-  # this set dialog message
-  message_text "value"
-          EOS
+          puts INVALID_DSL_MESSAGE
           raise Denrei::DenreiDslError.new
           exit(false)
         end
