@@ -5,7 +5,7 @@ module Denrei
   # = Denrei CloseButton
   class CloseButton
     def self.add_close_button # rubocop:disable MethodLength
-      btn_OK = TkButton.new(TkRoot.new) do
+      TkButton.new(TkRoot.new) do
         text 'close'
         width 10
         focus

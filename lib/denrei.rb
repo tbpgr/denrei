@@ -68,7 +68,7 @@ message_text "value"
       source.each_line do |line|
         begin
           instance_eval(line)
-        rescue => e
+        rescue
           warn("invalid dsl = #{line}\n#{INVALID_DSL_MESSAGE}")
           raise Denrei::DenreiDslError
         end
