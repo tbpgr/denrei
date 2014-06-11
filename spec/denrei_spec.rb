@@ -7,7 +7,7 @@ describe Denrei::Core do
     {
       case_no: 1,
       expected: Denrei::Core::DENREI_TEMPLATE
-    },
+    }
   ]
 
   cases_init.each do |c|
@@ -28,7 +28,7 @@ describe Denrei::Core do
     {
       case_no: 1,
       expected: { title: 'Denrei', message: 'Finish!!' }
-    },
+    }
   ]
 
   cases_set_default.each do |c|
@@ -78,7 +78,7 @@ message_text "message text"
       input: EXECUTE_DENREI_DSL_INVALID_INPUT,
       expected: { title: nil, message: nil },
       have_error: true
-    },
+    }
   ]
 
   cases_execute_denrei_dsl.each do |c|
